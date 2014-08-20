@@ -1,3 +1,6 @@
+// Find your access token in your spark.io project by clicking the gear icon ("Settings") in the lower left.
+var ACCESS_TOKEN = "your access token here"
+
 function collectData() {
   var spreadsheet = SpreadsheetApp.openById("1po4fFIrSeggmJWQ8nIMaIZROCJc3iSZ8To_OugPAAvk");
   var sheet = spreadsheet.getSheetByName("Raw Data");
@@ -8,7 +11,7 @@ function collectData() {
   var fetch_attempts_remaining = 3;
   for (; url_response == ""; --fetch_attempts_remaining) {
     try {
-      url_response = UrlFetchApp.fetch("https://api.spark.io/v1/devices/nanobead/sensor_state?access_token=3bdc1e530bd5834d7adf09646819a1808619ec39");
+      url_response = UrlFetchApp.fetch("https://api.spark.io/v1/devices/nanobead/sensor_state?access_token=" + ACCESS_TOKEN);
     } catch(e) {
       if (fetch_attempts_remaining < 1) {
         Logger.log("Ran out of retries when fetching URL.");
